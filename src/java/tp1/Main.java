@@ -7,8 +7,7 @@ package tp1;
  */
 
 /**
- *
- * @author houssem
+ * Main class.
  */
 public class Main {
     

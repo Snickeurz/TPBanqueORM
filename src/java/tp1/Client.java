@@ -14,35 +14,56 @@ import javax.persistence.*;
  */
 
 /**
- *
- * @author houssem
+ * Define Client entity
+ * 
+ * @author Nicolas
  */
-
 @Entity
 public class Client implements Serializable {
     
+    /**
+     * Client's id for referecement
+     */
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(nullable = false, length = 8)
-    
     private int numClient;
     
+    /**
+     * Client's lastname
+     */
     @Column(nullable = false)
     private String nomClient;
     
+    /**
+     * Client's firstname
+     */
     @Column(nullable = false)
     private String prenomClient;
 
+    /**
+     * Client's birthday
+     */
     @Column(nullable = false)
     @Temporal(TemporalType.DATE) 
     private Date dateNaiss;
     
+    /**
+     * Client's account list
+     */
     @ManyToMany(mappedBy = "clients")
     private Set<Account> accounts = new HashSet<Account>();
 
+    /**
+     * Client's default constructor
+     */
     public Client() {
     }
 
+    /**
+     * MUTATORS
+     */
+    
     public int getNumClient() {
         return numClient;
     }
@@ -81,11 +102,5 @@ public class Client implements Serializable {
 
     public void setAccounts(Account account) {
         this.accounts.add(account);
-    }
-    
-    
-    
-    
-    
-    
+    }    
 }

@@ -11,23 +11,36 @@ import javax.persistence.*;
  */
 
 /**
- *
- * @author houssem Boukirat
+ * Define Bank entity
+ * 
+ * @author Nicolas
  */
-
 @Entity
 public class BankBranch implements Serializable {
     
+    /**
+     * BankBranch's code for referencement
+     */
     @Id
     @Column(length = 5, nullable = false)
     private int codeAgence;
     
+    /**
+     * BankBranch's adress
+     */
     @Column(nullable = false)
     private String adresse;
 
+    /**
+     * BankBranch's default constructor
+     */
     public BankBranch() {
     }
 
+    /**
+     * MUTATORS
+     */
+    
     public int getCodeAgence() {
         return codeAgence;
     }

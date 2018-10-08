@@ -6,46 +6,71 @@ package tp1;
  * and open the template in the editor.
  */
 
-/**
- *
- * @author houssem Boukirat
- */
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
+/**
+ * Define Account entity
+ * @author Nicolas
+ */
 @Entity
 public class Account implements Serializable {
     
+    /**
+     * Account's number
+     */
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(length = 11, nullable = false)
     private String num_compte;
     
+    /**
+     * Account's title 
+     */
     @Column(nullable = false)
     private String libelle;
     
-    @Column(length = 27, nullable = false)
+    /**
+     * Account's IBAN
+     */
+    @Column(length = 27)
     private String IBAN;
     
+    /**
+     * Account's solde.
+     */
     @Column(nullable = false, precision = 10, scale = 2)
     private float solde;
     
+    /**
+     * Account's bankBranch dependency 
+     */
     @ManyToOne
     @JoinColumn(name = "agence_fk", nullable = false)
     private BankBranch agence;
     
+    /**
+     * Account's owner list 
+     */
     @ManyToMany
     @JoinTable(name = "Account_Client",
     joinColumns = @JoinColumn(name = "num_compte", referencedColumnName = "num_compte"),
     inverseJoinColumns = @JoinColumn(name = "num_client", referencedColumnName = "numClient"))
     private Set<Client> clients = new HashSet<Client>();
-
+    
+    /**
+     * Account's default constructor.
+     */
     public Account() {
     }
 
+    /**
+     * MUTATORS
+     */
+    
+    
     public Set<Client> getClients() {
         return clients;
     }
