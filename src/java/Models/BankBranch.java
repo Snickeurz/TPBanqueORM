@@ -1,0 +1,57 @@
+package Models;
+
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Nicolas
+ */
+
+@Entity
+public class BankBranch implements Serializable {
+    
+    @Id
+//    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(length = 5, nullable = false)
+    private int codeAgence;
+    
+    @Column(nullable = false)
+    private String adresse;
+
+    public BankBranch() {
+    }
+
+    public int getCodeAgence() {
+        return codeAgence;
+    }
+
+    public void setCodeAgence(int codeAgence) {
+        this.codeAgence = codeAgence;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    @Override
+    public String toString() {
+        return "BankBranch{" + "codeAgence=" + codeAgence + ", adresse=" + adresse + '}';
+    }
+    
+    
+    
+    
+    
+}
