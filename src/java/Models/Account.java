@@ -22,7 +22,7 @@ public class Account implements Serializable {
     
     @Id
     @Column(length = 11, nullable = false)
-    private String num_compte;
+    private int num_compte;
     
     @Column(nullable = false)
     private String libelle;
@@ -55,14 +55,12 @@ public class Account implements Serializable {
     }
 
     
-    public String getNum_compte() {
+    public int getNum_compte() {
         return num_compte;
     }
 
-    public void setNum_compte(String num_compte) {
-        if(num_compte.length() == 11){
-            this.num_compte = num_compte;
-        }
+    public void setNum_compte(int num_compte) {
+        this.num_compte = num_compte;    
     }
 
     public String getLibelle() {

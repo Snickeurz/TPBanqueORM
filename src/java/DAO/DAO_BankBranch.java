@@ -34,7 +34,7 @@ public class DAO_BankBranch extends IDAO<BankBranch> {
     public BankBranch getByID(int id) {
         BankBranch b = em.find(BankBranch.class, id);
         if(b == null){
-            System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
+            return null;
         }
         return b;
 

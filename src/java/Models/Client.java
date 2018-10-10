@@ -25,7 +25,6 @@ public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(nullable = false, length = 8)
-    
     private int numClient;
     
     @Column(nullable = false)
@@ -92,10 +91,5 @@ public class Client implements Serializable {
     public void setAccounts(Account account) {
         this.accounts.add(account);
     }
-    
-    
-    
-    
-    
     
 }

@@ -1,11 +1,8 @@
+<%@page import="Models.Account"%>
 <%@page import="java.util.List"%>
 <%@page import="Models.BankBranch"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <title>TP ORM</title>
@@ -17,10 +14,12 @@ and open the template in the editor.
     <body>
         <div class="container">
           <div class="jumbotron">
-            <h1>Formulaire création</h1>
-            <p class="bg-info">CLIENT <a class="btn btn-info" href="#"> VOIR TOUTES LES INFOS CLIENT</a></p>      
-            <p>BANK <a class="btn btn-info" href="displayModel/bankBranchInfo.jsp">VOIR TOUTES LES INFOS BANK </a></p>
-            <p class="bg-danger">ACCOUNT <a class="btn btn-info" href="#">VOIR TOUTES LES INFOS ACCOUNT</a></p>
+            <h1 class="text-center">Formulaire création</h1>
+            <div class="row">
+                <div class="col"><a class="btn btn-info" href="${pageContext.request.contextPath}/servletDisplayAll?entity=client"> VOIR TOUTES LES INFOS CLIENT</a></div>
+                <div class="col"><a class="btn btn-info" href="${pageContext.request.contextPath}/servletDisplayAll?entity=bankbranch">BANK VOIR TOUTES LES INFOS BANK </a></div>
+                <div class="col"><a class="btn btn-info" href="${pageContext.request.contextPath}/servletDisplayAll?entity=account">ACCOUNT VOIR TOUTES LES INFOS ACCOUNT</a></div>
+            </div>
           </div>
         </div>
 
@@ -28,7 +27,7 @@ and open the template in the editor.
         <div class="row">
             <!-- CLIENT FORM -->
             <div class="col">
-                    <form class="form-horizontal bg-info" action="insertModel/processClient.jsp" >
+                    <form class="form-horizontal" action="${pageContext.request.contextPath}/servletClient" >
                         <fieldset>
                         <!-- Form Name -->
                         <legend>Formulaire ajout client</legend>
@@ -37,7 +36,7 @@ and open the template in the editor.
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="bank_id">Nom client : </label>  
                           <div class="col">
-                            <input name="clientName" type="text" placeholder="Bové.." class="form-control input-md" required>
+                            <input name="clientName" type="text" placeholder="Bove.." class="form-control input-md" required>
                             <span class="help-block">Le nom du client</span>  
                           </div>
                         </div>
@@ -46,7 +45,7 @@ and open the template in the editor.
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="textinput">Prenom client : </label>  
                           <div class="col">
-                            <input id="clientPrenom" name="clientPrenom" type="text" placeholder="José" class="form-control input-md" required>
+                            <input name="prenomClient" type="text" placeholder="Jose" class="form-control input-md" required>
                             <span class="help-block">Le prenom du client</span>  
                           </div>
                         </div>
@@ -54,10 +53,31 @@ and open the template in the editor.
                         
                         <!-- Numéro client input-->
                         <div class="form-group">
-                          <label class="col-md-4 control-label" for="textinput">Numéro client : </label>  
+                          <label class="col-md-4 control-label" for="numClient">Numéro client : </label>  
                           <div class="col">
-                              <input id="clientNumero" name="clientNumero" type="text" placeholder="12345678" class="form-control input-md" required maxlength="8">
+                              <input name="numClient" type="text" placeholder="12345678" class="form-control input-md" required maxlength="8">
                             <span class="help-block">Le numéro du client</span>  
+                          </div>
+                        </div>
+                        
+                         <!-- Account FK client input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="textinput">Account : </label>  
+                          <div class="col">
+                              <select name="account">
+                                  <%
+                                       List<Account> listAccount = (List<Account>) request.getAttribute("listAccount"); 
+                                for (Account account: listAccount) {
+                                    int AccountCode = account.getNum_compte();
+                                    String AccountLibelle = account.getLibelle();
+                                    %>
+                                    <option value="<%=AccountCode %>"><%=AccountLibelle %></option>
+                                     <%
+                                }   
+                                      %>
+                                  
+                              </select>
+                            <span class="help-block">Le numéro de compte lié au client</span>  
                           </div>
                         </div>
                         
@@ -97,7 +117,7 @@ and open the template in the editor.
             
             <!-- Account form -->
             <div class="col">                
-                    <form class="form-horizontal bg-danger" action="${pageContext.request.contextPath}/servletAccount" method="POST">
+                    <form class="form-horizontal" action="${pageContext.request.contextPath}/servletAccount" method="POST">
                         <fieldset>
                         <!-- Form Name -->
                         <legend>Formulaire ajout Account</legend>

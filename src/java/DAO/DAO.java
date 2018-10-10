@@ -75,7 +75,7 @@ public class DAO {
          * *******************************
          */
         Account a1 = new Account();
-        a1.setNum_compte("nwghpzawvwe");
+        a1.setNum_compte(123);
         a1.setClients(client1);
         a1.setClients(client2);
         a1.setAgence(agence1);

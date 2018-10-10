@@ -5,8 +5,12 @@
  */
 package Controllers;
 
+import DAO.DAO_Account;
 import DAO.DAO_BankBranch;
+import DAO.DAO_Client;
+import Models.Account;
 import Models.BankBranch;
+import Models.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -17,8 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Nicol
+ * EnterPoint of application. Give to index.jsp a bunch of list for display in forms.
+ * 
+ * @author Nicolas
  */
 @WebServlet(name = "IndexServlet", urlPatterns = {"/"})
 public class IndexServlet extends HttpServlet {
@@ -35,9 +40,21 @@ public class IndexServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        // GET LIST BANKBRANCH
         DAO_BankBranch d = DAO_BankBranch.getInstance();
         List<BankBranch> listBank = d.getAll();
+        // GET LIST CLIENT
+        DAO_Client dc = DAO_Client.getInstance();
+        List<Client> listClient = dc.getAll();
+        // GET LIST ACCOUNT
+        DAO_Account da = DAO_Account.getInstance();
+        List<Account> listAccount = da.getAll();
+        
+        // Buff attributes
         request.setAttribute("listBank", listBank );
+        request.setAttribute("listClient", listClient );
+        request.setAttribute("listAccount", listAccount);
+        //Send attributes to main JS page
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 

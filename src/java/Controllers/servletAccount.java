@@ -51,7 +51,7 @@ public class servletAccount extends HttpServlet {
             throws ServletException, IOException {
         
        
-        String num_compte = request.getParameter("num_compte");
+        int num_compte = Integer.parseInt(request.getParameter("num_compte"));
         String IBAN = request.getParameter("IBAN");
         String libelle = request.getParameter("libelle");
         int solde = Integer.parseInt(request.getParameter("solde"));

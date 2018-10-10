@@ -9,51 +9,95 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- *
+ * Define an Generic DAO contract. 
+ * 
  * @author Nicolas
+ * @param <T> an Entity
  */
-public abstract class IDAO<T> {
-
+public abstract class IDAO<T> 
+{
+    // get EntityManager
     final EntityManagerFactory emf = Persistence.createEntityManagerFactory("banqueTP_ORMPU");
     final EntityManager em = emf.createEntityManager();
+    
+    /**
+     * Insert a Generic new tuple into database.
+     * 
+     * @param newTuple an instance of Entity
+     * @return true if persistence is okay, else return false.
+     */
     public boolean insert(T newTuple) {
+        //Begin transaction
         em.getTransaction().begin();
-        try {
+        try 
+        {
+            // Perist object
             em.persist(newTuple);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e)
+        {
             return false;
         }
+        // valid transaction
         em.getTransaction().commit();
         return true;
-
     }
 
+    /**
+     * 
+     * @return a list of entities 
+     */
     public abstract List<T> getAll();
 
+    /**
+     * 
+     * @param id an identificator
+     * @return an Entity
+     */
     public abstract T getByID(int id);
 
-    public boolean update(T TupleToUpdate) {
+    /**
+     * Update an Entity.
+     * 
+     * @param TupleToUpdate the entity to update
+     * @return true if update is ok, else return false
+     */
+    public boolean update(T TupleToUpdate)
+    {
+        // Start transaction
         em.getTransaction().begin();
-        try {
+        try
+        {
+            // merge the entity
             em.merge(TupleToUpdate);
-
-        } catch (Exception e) {
+        } catch (Exception e) 
+        {
             return false;
         }
+        // Valid transaction
         em.getTransaction().commit();
         return true;
     }
 
-    public boolean remove(T TupleToBeRemoved) {
+    /**
+     * Remove an Entity.
+     * 
+     * @param TupleToBeRemoved a reference to the object to remove
+     * @return true if remove is ok, else return false
+     */
+    public boolean remove(T TupleToBeRemoved)
+    {
+        // Start transaction
         em.getTransaction().begin();
-        try {
+        try 
+        {
+            // Remove the entity from database
             em.remove(TupleToBeRemoved);
-
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println(e);
             return false;
         }
+        // Valid transaction
         em.getTransaction().commit();
         return true;
     }
