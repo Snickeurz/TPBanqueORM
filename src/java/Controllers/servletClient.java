@@ -9,6 +9,7 @@ import DAO.*;
 import Models.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -67,12 +68,25 @@ public class servletClient extends HttpServlet {
               client.setPrenomClient(prenom);
               client.setNumClient(num_client);
 
+              //To improve ....
+              Calendar cal = Calendar.getInstance();
+              cal.set(Calendar.YEAR, 1988);
+              cal.set(Calendar.MONTH, Calendar.JANUARY);
+              cal.set(Calendar.DAY_OF_MONTH, 1);
+              client.setDateNaiss(cal.getTime());
+              
               DAO_Account account_dao = DAO_Account.getInstance();
               Account account = account_dao.getByID(num_account);
               
               client.setAccounts(account);
-              client_dao.insert(client);
-                
+              boolean c = client_dao.insert(client);
+              if(c)
+              {
+                  out.print("\nInsertion of Client Sucessfull");
+              }else{
+                  out.print("\nInsertion of Client IS NOT Sucessfull");
+              }
+              out.println("\n\nRedirection dans trois secondes..");
         }catch(Exception e)
         {
             

@@ -14,6 +14,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <title>Data details page</title>
     </head>
     <body>
@@ -23,14 +24,15 @@
             {
                 List<Account> listAccount = (List<Account>) request.getAttribute("listAccount"); 
             %>
-            <div class="bg-info"><h3 class="text-center">LISTE ACCOUNT</h3></div>
+            <div class="bg-info"><h3 class="text-center">LISTE ACCOUNT <span class="fas fa-users"></span></h3></div>
                 <table class="table table-dark">
                 <thead>
                   <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Libelle</th>
-                    <th scope="col">IBAN</th>
-                    <th scope="col">Solde</th>
+                    <th scope="col">ID <span class="fas fa-user-tie"></span></th>
+                    <th scope="col">Libelle <span class="fas fa-signature"></span></th>
+                    <th scope="col">IBAN <span class="fas fa-money-check-alt"></span></th>
+                    <th scope="col">Solde <span class="fas fa-dollar-sign"></span></th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -43,6 +45,7 @@
                     <td><%=account.getLibelle()%></td>
                     <td><%=account.getIBAN()%></td>
                     <td><%=account.getSolde()%></td>
+                    <td><a href="${pageContext.request.contextPath}/servletBank?delete=<%=account.getNum_compte()%>"><span class="fa fa-trash" style="color:red;"></span></a></td>
                   </tr>
                   <%
                 }
@@ -64,10 +67,11 @@
                 <table class="table table-dark">
                 <thead>
                   <tr>
-                    <th scope="col">ID client</th>
-                    <th scope="col">NOM</th>
-                    <th scope="col">PRENOM</th>
-                    <th scope="col">DATE NAISS</th>
+                    <th scope="col">ID client <span class="fas fa-users"></span></th>
+                    <th scope="col">NOM <span class="fas fa-user-tag"></span></th>
+                    <th scope="col">PRENOM <span class="fas fa-user-tag"></span></th>
+                    <th scope="col">DATE NAISS <span class="fas fa-calendar-alt"></span></th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -80,6 +84,7 @@
                     <td><%=client.getNomClient()%></td>
                     <td><%=client.getPrenomClient()%></td>
                     <td><%=client.getDateNaiss()%></td>
+                    <td><a href="${pageContext.request.contextPath}/servletClient?delete=<%=client.getNumClient()%>"><span class="fa fa-trash" style="color:red;"></span></a></td>
                   </tr>
                   <%
                 }
@@ -97,12 +102,13 @@
             {
                 List<BankBranch> listBank = (List<BankBranch>) request.getAttribute("listBank"); 
             %>
-            <div class="bg-info"><h3 class="text-center">LISTE DES BANKS</h3></div>
+            <div class="bg-info"><h3 class="text-center">LISTE DES BANKS <span class="fas fa-university"></span></h3></div>
                 <table class="table table-dark">
                 <thead>
                   <tr>
-                    <th scope="col">ID BANK</th>
-                    <th scope="col">ADRESSE BANK</th>
+                    <th scope="col">ID BANK <span class="fas fa-id-badge"></span></th>
+                    <th scope="col">ADRESSE BANK <span class="fas fa-map"></span></th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -113,6 +119,7 @@
                   <tr>
                     <th scope="row"><%=bank.getCodeAgence()%></th>
                     <td><%=bank.getAdresse()%></td>
+                    <td><a href="${pageContext.request.contextPath}/servletBank?delete=<%=bank.getCodeAgence()%>"><span class="fa fa-trash" style="color:red;"></span></a></td>
                   </tr>
                   <%
                 }

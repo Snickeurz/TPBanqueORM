@@ -35,7 +35,6 @@ public class servletAccount extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
     }
     
     /**
@@ -64,7 +63,7 @@ public class servletAccount extends HttpServlet {
             out.print("\nLibelle : " + libelle);
             out.print("\nsolde : " + solde);
             out.print("\nidBank : " + idBank);
-
+            out.print("\n\nRedirection dans 3 secondes..");
             DAO_Account dao_account = DAO_Account.getInstance();
             Account account = new Account();
             account.setNum_compte(num_compte);
@@ -88,6 +87,7 @@ public class servletAccount extends HttpServlet {
             }else{
                 out.print("Failed to insert Object Account ! ");
             }
+            out.println("\n\nRedirection dans trois secondes..");
         }catch(Exception e)
         {
         }

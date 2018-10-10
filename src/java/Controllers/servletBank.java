@@ -34,20 +34,6 @@ public class servletBank extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) 
-        {    
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet servletBank</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet servletBank at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");          
-        }
     }
     
     /**
@@ -83,11 +69,11 @@ public class servletBank extends HttpServlet {
                 }else{
                     out.print("\nFailed to insert Object Bank ! ");
                 }
+                out.println("\n\nRedirection dans trois secondes..");
             }catch(Exception e)
             {
             }
-        }else{
-            
+        }else{            
             try(PrintWriter out = response.getWriter())
             {
             out.print("doPost here ! You must have a length of 5 digit for codeAgence .. \n");
@@ -95,7 +81,7 @@ public class servletBank extends HttpServlet {
             {
                 
             }
-        }
+        }    
         processRequest(request, response);
     }
 
