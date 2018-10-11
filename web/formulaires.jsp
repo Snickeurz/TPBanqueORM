@@ -23,7 +23,7 @@
                     <div class="col"><a class="btn btn-info" href="${pageContext.request.contextPath}/servletDisplayAll?entity=account">LIST ACCOUNT <span class="fa fa-eye"></span></a></div>
                 </div>
             </div>
-            <div class="alert alert-secondary" role="alert">
+            <div class="alert alert-danger" role="alert">
                 <p class="text-center">Ordre d'utilisation des formulaires : 
                     <i class="fa fa-angle-right" aria-hidden="true"></i>  BankBranch 
                     <i class="fa fa-angle-right" aria-hidden="true"></i> Account 
@@ -159,7 +159,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput"><span class="fas fa-money-bill-alt"></span> Solde : </label>  
                                 <div class="col">
-                                    <input name="solde" type="text" placeholder="123456" class="form-control input-md" required maxlength=10 minlength=10>
+                                    <input name="solde" type="text" placeholder="123456" class="form-control input-md" required maxlength=10>
                                     <span class="help-block">Le solde du compte</span>  
                                 </div>
                             </div>

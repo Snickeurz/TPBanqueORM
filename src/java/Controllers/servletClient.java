@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Nicol
+ * @author Nicolas
  */
 @WebServlet(name = "servletClient", urlPatterns = {"/servletClient"})
 public class servletClient extends HttpServlet {
@@ -93,4 +93,39 @@ public class servletClient extends HttpServlet {
         }
         processRequest(request, response);
     }
+    
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException
+    {
+        int NumClient = 0;
+        if(request.getParameter("delete")!= null){
+            NumClient = Integer.parseInt(request.getParameter("delete"));
+        }
+        if(NumClient!= 0)
+        {
+             try (PrintWriter out = response.getWriter()) {
+                out.print("doGet here ! Deleting the Client with id : " + NumClient);
+                DAO_Client dao_client = DAO_Client.getInstance();
+                Client client = dao_client.getByID(NumClient);
+                boolean remove = dao_client.remove(client);
+                if(remove)
+                {
+                    out.println("Delete of Client is Sucessfull");
+                }else{
+                    out.println("Delete of Client IS NOT Sucessfull");
+                }
+            } catch (Exception e) {
+            }
+        }
+        processRequest(request, response);
+    }    
 }

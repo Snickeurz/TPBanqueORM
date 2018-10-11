@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Nicol
+ * @author Nicolas
  */
 @WebServlet(name = "servletBank", urlPatterns = {"/servletBank"})
 public class servletBank extends HttpServlet {
@@ -83,4 +83,38 @@ public class servletBank extends HttpServlet {
         processRequest(request, response);
     }
 
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException
+    {
+        int codeBankBranch = 0;
+        if(request.getParameter("delete")!= null){
+            codeBankBranch = Integer.parseInt(request.getParameter("delete"));
+        }
+        if(codeBankBranch!= 0)
+        {
+             try (PrintWriter out = response.getWriter()) {
+                out.print("doGet here ! Deleting the bank with id : " + codeBankBranch);
+                DAO_BankBranch dao_bank = DAO_BankBranch.getInstance();
+                BankBranch bank = dao_bank.getByID(codeBankBranch);
+                boolean remove = dao_bank.remove(bank);
+                if(remove)
+                {
+                    out.println("Delete of BankBranch is Sucessfull");
+                }else{
+                    out.println("Delete of BankBranch IS NOT Sucessfull");
+                }
+            } catch (Exception e) {
+            }
+        }
+        processRequest(request, response);
+    }    
 }

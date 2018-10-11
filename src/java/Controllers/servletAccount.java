@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Nicol
+ * @author Nicolas
  */
 @WebServlet(name = "servletAccount", urlPatterns = {"/servletAccount"})
 public class servletAccount extends HttpServlet {
@@ -101,4 +101,40 @@ public class servletAccount extends HttpServlet {
         }
         processRequest(request, response);
     }
+    
+    
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException
+    {
+        String NumAccount = "";
+        if(request.getParameter("delete")!= null){
+            NumAccount = request.getParameter("delete");
+        }
+        if(!NumAccount.isEmpty())
+        {
+             try (PrintWriter out = response.getWriter()) {
+                out.print("doGet here ! Deleting the Account with id : " + NumAccount);
+                DAO_Account dao_account = DAO_Account.getInstance();
+                Account account = dao_account.getByID(NumAccount);
+                boolean remove = dao_account.remove(account);
+                if(remove)
+                {
+                    out.println("Delete of Account is Sucessfull");
+                }else{
+                    out.println("Delete of Account IS NOT Sucessfull");
+                }
+            } catch (Exception e) {
+            }
+        }
+        processRequest(request, response);
+    }    
 }

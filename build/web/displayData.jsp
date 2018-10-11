@@ -45,7 +45,7 @@
                     <td><%=account.getLibelle()%></td>
                     <td><%=account.getIBAN()%></td>
                     <td><%=account.getSolde()%></td>
-                    <td><a href="${pageContext.request.contextPath}/servletBank?delete=<%=account.getNum_compte()%>"><span class="fa fa-trash" style="color:red;"></span></a></td>
+                    <td><a href="${pageContext.request.contextPath}/servletAccount?delete=<%=account.getNum_compte()%>"><span class="fa fa-trash" style="color:red;"></span></a></td>
                   </tr>
                   <%
                 }

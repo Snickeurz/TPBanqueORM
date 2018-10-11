@@ -4,13 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Nicol/Documents/NetBeansProjects/banqueTP_ORM/src/java/Controllers/servletDisplayAll.java</file>
-            <file>file:/C:/Users/Nicol/Documents/NetBeansProjects/banqueTP_ORM/web/formulaires.jsp</file>
             <file>file:/C:/Users/Nicol/Documents/NetBeansProjects/banqueTP_ORM/src/java/Controllers/IndexServlet.java</file>
             <file>file:/C:/Users/Nicol/Documents/NetBeansProjects/banqueTP_ORM/src/java/DAO/IDAO.java</file>
             <file>file:/C:/Users/Nicol/Documents/NetBeansProjects/banqueTP_ORM/src/java/DAO/DAO_BankBranch.java</file>
             <file>file:/C:/Users/Nicol/Documents/NetBeansProjects/banqueTP_ORM/src/java/Models/Account.java</file>
             <file>file:/C:/Users/Nicol/Documents/NetBeansProjects/banqueTP_ORM/web/index.jsp</file>
             <file>file:/C:/Users/Nicol/Documents/NetBeansProjects/banqueTP_ORM/src/java/Models/BankBranch.java</file>
+            <file>file:/C:/Users/Nicol/Documents/NetBeansProjects/banqueTP_ORM/src/java/WebPackage/bankWS.java</file>
             <file>file:/C:/Users/Nicol/Documents/NetBeansProjects/banqueTP_ORM/src/java/Controllers/servletAccount.java</file>
             <file>file:/C:/Users/Nicol/Documents/NetBeansProjects/banqueTP_ORM/src/java/Models/Main.java</file>
             <file>file:/C:/Users/Nicol/Documents/NetBeansProjects/banqueTP_ORM/src/java/DAO/DAO_Client.java</file>

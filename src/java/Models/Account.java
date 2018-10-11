@@ -99,9 +99,7 @@ public class Account implements Serializable {
     
     
     public int verifityClientsStatus(){
-        //System.out.println("inside verifieraccountstatus");
         if(getClients().isEmpty()){
-            //System.out.println("je suis dans le empty");
             DAO_Account daccount = DAO_Account.getInstance();
             System.out.println(daccount.remove(this));
         }
