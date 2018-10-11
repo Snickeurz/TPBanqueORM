@@ -88,12 +88,15 @@ public class servletAccount extends HttpServlet {
             boolean b = dao_account.insert(account);  
             if(b)
             {
-                out.print("Object Accounnt is Sucessfully inserted into DB ! ");
+                out.print("Object Account is Sucessfully inserted into DB ! ");
                 String url = request.getRequestURL().toString();
-                String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "/";
+                String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "?insert=account&etat=true";
                 response.sendRedirect(baseURL);
             }else{
                 out.print("Failed to insert Object Account ! ");
+                String url = request.getRequestURL().toString();
+                String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "?insert=account&etat=false";
+                response.sendRedirect(baseURL);
             }
             out.println("\n\nRedirection dans trois secondes..");
         }catch(Exception e)

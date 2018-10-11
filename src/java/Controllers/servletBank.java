@@ -67,15 +67,16 @@ public class servletBank extends HttpServlet {
                 }
                 out.println("\n\nRedirection dans trois secondes..");
                 String url = request.getRequestURL().toString();
-                String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "/";
-                //out.println(url);
-                //out.println(baseURL);
+                String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "?insert=bank&etat=true";
                 response.sendRedirect(baseURL);
             } catch (Exception e) {
             }
         } else {
             try (PrintWriter out = response.getWriter()) {
                 out.print("doPost here ! You must have a length of 5 digit for codeAgence .. \n");
+                String url = request.getRequestURL().toString();
+                String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "?insert=bank&etat=false";                
+                response.sendRedirect(baseURL);
             } catch (Exception e) {
 
             }

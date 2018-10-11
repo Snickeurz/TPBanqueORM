@@ -82,10 +82,13 @@ public class servletClient extends HttpServlet {
             if (c && a) {
                 out.print("\nInsertion of Client Sucessfull");
                 String url = request.getRequestURL().toString();
-                String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "/";
+                String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "?insert=client&etat=true";
                 response.sendRedirect(baseURL);
             } else {
                 out.print("\nInsertion of Client IS NOT Sucessfull");
+                String url = request.getRequestURL().toString();
+                String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "?insert=client&etat=false";
+                response.sendRedirect(baseURL);
             }
             out.println("\n\nRedirection dans trois secondes..");
         } catch (Exception e) {
@@ -113,10 +116,11 @@ public class servletClient extends HttpServlet {
         if(NumClient!= 0)
         {
              try (PrintWriter out = response.getWriter()) {
-                out.print("doGet here ! Deleting the Client with id : " + NumClient);
+                DAO_Account da = DAO_Account.getInstance();
                 DAO_Client dao_client = DAO_Client.getInstance();
                 Client client = dao_client.getByID(NumClient);
                 boolean remove = dao_client.remove(client);
+                out.println(remove);
                 if(remove)
                 {
                     out.println("Delete of Client is Sucessfull");

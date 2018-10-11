@@ -30,6 +30,7 @@
                     <i class="fa fa-angle-right" aria-hidden="true"></i> Client
                 </p>
             </div>    
+            <%@include file="alert.jsp" %>
             <div class="row">
                 <!-- CLIENT FORM -->
                 <div class="col">
