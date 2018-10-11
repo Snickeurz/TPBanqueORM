@@ -11,7 +11,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Nicolas
+ * @author Nicolas SIBAUD
  */
 public class DAO_Account extends IDAO<Account>{
 
@@ -27,10 +27,14 @@ public class DAO_Account extends IDAO<Account>{
         return q.getResultList();
     }
 
-    @Override
-    public Account getByID(int id) {
+    public Account getByID(String id) {
         Account b =  em.find(Account.class,id); 
         return b;
+    }
+
+    @Override
+    public Account getByID(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

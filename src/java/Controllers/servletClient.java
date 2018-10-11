@@ -34,9 +34,8 @@ public class servletClient extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-    }
 
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -49,47 +48,48 @@ public class servletClient extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String prenom = request.getParameter("prenomClient");
         String nom = request.getParameter("nomClient");
         int num_client = Integer.parseInt(request.getParameter("numClient"));
-        int num_account = Integer.parseInt(request.getParameter("account"));
+        String num_account = request.getParameter("account");
         // TODO
-        try(PrintWriter out = response.getWriter())
-        {
-              out.print("doPost here ! Doing the traitement .. \n");
-              out.print("\nPrenom : " + prenom);
-              out.print("\nNom :  " + nom);
-              out.print("\nNum client : " + num_client);
-              out.print("\nNum account : " + num_account);
-              DAO_Client client_dao = DAO_Client.getInstance();
-              Client client = new Client();
-              client.setNomClient(nom);
-              client.setPrenomClient(prenom);
-              client.setNumClient(num_client);
+        try (PrintWriter out = response.getWriter()) {
+            out.print("doPost here ! Doing the traitement .. \n");
+            out.print("\nPrenom : " + prenom);
+            out.print("\nNom :  " + nom);
+            out.print("\nNum client : " + num_client);
+            out.print("\nNum account : " + num_account);
+            DAO_Client client_dao = DAO_Client.getInstance();
+            Client client = new Client();
+            client.setNomClient(nom);
+            client.setPrenomClient(prenom);
+            client.setNumClient(num_client);
 
-              //To improve ....
-              Calendar cal = Calendar.getInstance();
-              cal.set(Calendar.YEAR, 1988);
-              cal.set(Calendar.MONTH, Calendar.JANUARY);
-              cal.set(Calendar.DAY_OF_MONTH, 1);
-              client.setDateNaiss(cal.getTime());
-              
-              DAO_Account account_dao = DAO_Account.getInstance();
-              Account account = account_dao.getByID(num_account);
-              
-              client.setAccounts(account);
-              boolean c = client_dao.insert(client);
-              if(c)
-              {
-                  out.print("\nInsertion of Client Sucessfull");
-              }else{
-                  out.print("\nInsertion of Client IS NOT Sucessfull");
-              }
-              out.println("\n\nRedirection dans trois secondes..");
-        }catch(Exception e)
-        {
-            
+            //To improve ....
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.YEAR, 1988);
+            cal.set(Calendar.MONTH, Calendar.JANUARY);
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+            client.setDateNaiss(cal.getTime());
+
+            DAO_Account account_dao = DAO_Account.getInstance();
+            Account account = account_dao.getByID(num_account);
+            account.setClients(client);
+            client.setAccounts(account);
+            boolean c = client_dao.insert(client);
+            boolean a = account_dao.update(account);
+            if (c && a) {
+                out.print("\nInsertion of Client Sucessfull");
+                String url = request.getRequestURL().toString();
+                String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "/";
+                response.sendRedirect(baseURL);
+            } else {
+                out.print("\nInsertion of Client IS NOT Sucessfull");
+            }
+            out.println("\n\nRedirection dans trois secondes..");
+        } catch (Exception e) {
+
         }
         processRequest(request, response);
     }

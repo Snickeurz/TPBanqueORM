@@ -7,7 +7,7 @@ package DAO;
  */
 /**
  *
- * @author Nicolas 
+ * @author Nicolas SIBAUD
  */
 import Models.BankBranch;
 import Models.Client;
@@ -36,10 +36,11 @@ public class DAO {
          */
         BankBranch agence1 = new BankBranch();
         agence1.setAdresse("Montparnasse");
-
+        agence1.setCodeAgence(11111);
         BankBranch agence2 = new BankBranch();
         agence2.setAdresse("Tunis Ville");
-
+        agence2.setCodeAgence(22222);
+        
         dbank.insert(agence1);
         dbank.insert(agence2);
 
@@ -71,11 +72,13 @@ public class DAO {
         dclient.insert(client1);
         dclient.insert(client2);
 
+
         /**
          * *******************************
          */
         Account a1 = new Account();
-        a1.setNum_compte(123);
+        //a1.setNum_compte(123);
+        a1.setNum_compte("4GJh3F8JUB");
         a1.setClients(client1);
         a1.setClients(client2);
         a1.setAgence(agence1);
@@ -88,6 +91,8 @@ public class DAO {
 
         daccount.insert(a1);
         
+
+
 
         //dclient.remove(client1);
         //dclient.remove(client2);

@@ -16,7 +16,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author Nicolas
+ * @author Nicolas SIBAUD
  */
 
 @Entity

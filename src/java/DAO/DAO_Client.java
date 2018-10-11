@@ -13,7 +13,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Nicolas
+ * @author Nicolas SIBAUD
  */
 public class DAO_Client extends IDAO<Client> {
 

@@ -9,9 +9,9 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * Define an Generic DAO contract. 
+ * Define a Generic DAO contract. 
  * 
- * @author Nicolas
+ * @author Nicolas SIBAUD
  * @param <T> an Entity
  */
 public abstract class IDAO<T> 
@@ -50,7 +50,7 @@ public abstract class IDAO<T>
 
     /**
      * 
-     * @param id an identificator
+     * @param id an identifier
      * @return an Entity
      */
     public abstract T getByID(int id);
@@ -59,7 +59,7 @@ public abstract class IDAO<T>
      * Update an Entity.
      * 
      * @param TupleToUpdate the entity to update
-     * @return true if update is ok, else return false
+     * @return true if update is well executed, else return false
      */
     public boolean update(T TupleToUpdate)
     {
@@ -82,7 +82,7 @@ public abstract class IDAO<T>
      * Remove an Entity.
      * 
      * @param TupleToBeRemoved a reference to the object to remove
-     * @return true if remove is ok, else return false
+     * @return true if remove is well executed, else return false
      */
     public boolean remove(T TupleToBeRemoved)
     {

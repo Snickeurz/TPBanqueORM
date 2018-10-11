@@ -11,7 +11,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Nicolas
+ * @author Nicolas SIBAUD
  */
 public class DAO_BankBranch extends IDAO<BankBranch> {
 

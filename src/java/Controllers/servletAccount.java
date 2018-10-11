@@ -50,13 +50,18 @@ public class servletAccount extends HttpServlet {
             throws ServletException, IOException {
         
        
-        int num_compte = Integer.parseInt(request.getParameter("num_compte"));
+        //int num_compte = Integer.parseInt(request.getParameter("num_compte"));
+        String num_compte = request.getParameter("num_compte");
         String IBAN = request.getParameter("IBAN");
         String libelle = request.getParameter("libelle");
-        int solde = Integer.parseInt(request.getParameter("solde"));
+        float solde = Float.parseFloat(request.getParameter("solde"));
         int idBank = Integer.parseInt(request.getParameter("bank"));
         try(PrintWriter out = response.getWriter())
         {
+            if(num_compte.length() != 11 && IBAN.length() != 27){
+                out.println("taille des donnés incorect");
+                
+            }
             out.print("doPost here ! Doing the traitement .. \n");
             out.print("\nnum : " + num_compte);
             out.print("\nIban : " + IBAN);
@@ -84,6 +89,9 @@ public class servletAccount extends HttpServlet {
             if(b)
             {
                 out.print("Object Accounnt is Sucessfully inserted into DB ! ");
+                String url = request.getRequestURL().toString();
+                String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "/";
+                response.sendRedirect(baseURL);
             }else{
                 out.print("Failed to insert Object Account ! ");
             }

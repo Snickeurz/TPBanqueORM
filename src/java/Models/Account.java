@@ -8,7 +8,7 @@ package Models;
 
 /**
  *
- * @author Nicolas
+ * @author Nicolas SIBAUD
  */
 
 import DAO.DAO_Account;
@@ -22,7 +22,7 @@ public class Account implements Serializable {
     
     @Id
     @Column(length = 11, nullable = false)
-    private int num_compte;
+    private String num_compte;
     
     @Column(nullable = false)
     private String libelle;
@@ -55,11 +55,11 @@ public class Account implements Serializable {
     }
 
     
-    public int getNum_compte() {
+    public String getNum_compte() {
         return num_compte;
     }
 
-    public void setNum_compte(int num_compte) {
+    public void setNum_compte(String num_compte) {
         this.num_compte = num_compte;    
     }
 

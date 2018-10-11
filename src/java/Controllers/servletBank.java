@@ -32,10 +32,9 @@ public class servletBank extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
+            throws ServletException, IOException {
     }
-    
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -47,14 +46,12 @@ public class servletBank extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
-        if(request.getParameter("codeAgence").length()==5)
-        {
+
+        if (request.getParameter("codeAgence").length() == 5) {
             String adresse = request.getParameter("adresse");
             int codeAgence = Integer.parseInt(request.getParameter("codeAgence"));
 
-            try(PrintWriter out = response.getWriter())
-            {
+            try (PrintWriter out = response.getWriter()) {
                 out.print("doPost here ! Doing the traitement .. \n");
                 out.print("\ncode : " + codeAgence);
                 out.print("\nAdresse :  " + adresse);
@@ -63,25 +60,26 @@ public class servletBank extends HttpServlet {
                 bank.setAdresse(adresse);
                 bank.setCodeAgence(codeAgence);
                 boolean b = dao_bank.insert(bank);
-                if(b)
-                {
+                if (b) {
                     out.print("\nObject Bank is Sucessfully inserted into DB ! ");
-                }else{
+                } else {
                     out.print("\nFailed to insert Object Bank ! ");
                 }
                 out.println("\n\nRedirection dans trois secondes..");
-            }catch(Exception e)
-            {
+                String url = request.getRequestURL().toString();
+                String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "/";
+                //out.println(url);
+                //out.println(baseURL);
+                response.sendRedirect(baseURL);
+            } catch (Exception e) {
             }
-        }else{            
-            try(PrintWriter out = response.getWriter())
-            {
-            out.print("doPost here ! You must have a length of 5 digit for codeAgence .. \n");
-            }catch(Exception e)
-            {
-                
+        } else {
+            try (PrintWriter out = response.getWriter()) {
+                out.print("doPost here ! You must have a length of 5 digit for codeAgence .. \n");
+            } catch (Exception e) {
+
             }
-        }    
+        }
         processRequest(request, response);
     }
 

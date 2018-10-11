@@ -12,14 +12,14 @@ import javax.persistence.*;
 
 /**
  *
- * @author Nicolas
+ * @author Nicolas SIBAUD
  */
 
 @Entity
 public class BankBranch implements Serializable {
     
     @Id
-//    @GeneratedValue(strategy=GenerationType.AUTO)
+    //@GeneratedValue(strategy=GenerationType.AUTO)
     @Column(length = 5, nullable = false)
     private int codeAgence;
     
