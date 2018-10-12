@@ -110,8 +110,14 @@ public class servletBank extends HttpServlet {
                 if(remove)
                 {
                     out.println("Delete of BankBranch is Sucessfull");
+                    String url = request.getRequestURL().toString();
+                    String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "?insert=bankDeleted&etat=true";                
+                    response.sendRedirect(baseURL);
                 }else{
                     out.println("Delete of BankBranch IS NOT Sucessfull");
+                    String url = request.getRequestURL().toString();
+                    String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "?insert=bankDeleted&etat=false";                
+                    response.sendRedirect(baseURL);
                 }
             } catch (Exception e) {
             }

@@ -4,25 +4,25 @@ package Models;
 import java.io.Serializable;
 import javax.persistence.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
+ * Modele de banque (BankBranch)
  * @author Nicolas SIBAUD
  */
-
 @Entity
 public class BankBranch implements Serializable {
     
+    /**
+     * Code de l'agence bancaire, primary Key de 5 digits
+     */
     @Id
     //@GeneratedValue(strategy=GenerationType.AUTO)
     @Column(length = 5, nullable = false)
     private int codeAgence;
     
+    /**
+     * l'adresse du compte bancaire
+     */
     @Column(nullable = false)
     private String adresse;
 

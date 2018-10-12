@@ -1,6 +1,6 @@
 package Models;
 
-import DAO.DAO;
+import DAO.TestDAO;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,13 +10,13 @@ import DAO.DAO;
 
 /**
  *
- * @author Nicolas
+ * @author Nicolas SIBAUD
  */
 public class Main {
     
     public static void main(String [] args)
 	{
-		DAO d = new DAO();
+		TestDAO d = new TestDAO();
                 d.test();
 	}
 }

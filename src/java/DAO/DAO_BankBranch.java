@@ -10,7 +10,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 /**
- *
+ * DAO_BankBranch implemente le Design Pattern Singleton
  * @author Nicolas SIBAUD
  */
 public class DAO_BankBranch extends IDAO<BankBranch> {
@@ -39,5 +39,7 @@ public class DAO_BankBranch extends IDAO<BankBranch> {
         return b;
 
     }
+
+    
 
 }

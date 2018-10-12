@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import Models.Account;
@@ -10,7 +5,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 /**
- *
+ * DAO_Account implemente le Design Pattern Singleton
  * @author Nicolas SIBAUD
  */
 public class DAO_Account extends IDAO<Account>{

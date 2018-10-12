@@ -132,8 +132,14 @@ public class servletAccount extends HttpServlet {
                 if(remove)
                 {
                     out.println("Delete of Account is Sucessfull");
+                    String url = request.getRequestURL().toString();
+                    String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "?insert=accountDeleted&etat=true";
+                    response.sendRedirect(baseURL);
                 }else{
                     out.println("Delete of Account IS NOT Sucessfull");
+                    String url = request.getRequestURL().toString();
+                    String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "?insert=accountDeleted&etat=false";
+                    response.sendRedirect(baseURL);
                 }
             } catch (Exception e) {
             }
